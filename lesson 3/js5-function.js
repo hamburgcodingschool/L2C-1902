@@ -24,7 +24,6 @@ function randomizeIt(min, max) {
     // return result;
 
     return Math.floor(Math.random() * (max - min + 1)) + min;
-
 }
 
 // WITH REPETITION
@@ -56,6 +55,6 @@ function generateNumbers(min, max, amount) {
 var luckyNumbers = generateNumbers(1, 50, 5);
 var luckyStars = generateNumbers(1, 12, 2);
 
-console.log("The lucky sequence:");
+console.log("The lucky EM sequence:");
 console.log(luckyNumbers);
 console.log(luckyStars);
