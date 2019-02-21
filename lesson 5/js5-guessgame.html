@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function randomizeIt(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        var randomNumber = randomizeIt(1, 100);
+        alert(randomNumber); // CHEAT TO WIN!
+
+        var userNumber = parseInt(prompt("What's your guess?")); 
+
+        while (userNumber != randomNumber) {
+            if (userNumber > randomNumber) {
+                alert("Your number is too high!");
+            } else {
+                alert("Your number is too low!");
+            }
+            userNumber = parseInt(prompt("Guess again?")); 
+        }
+    </script>
+
+    <p>Game Over!!!! that means you probably won</p>
+</body>
+
+</html>

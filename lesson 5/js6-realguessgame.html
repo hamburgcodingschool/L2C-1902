@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function randomizeIt(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        var randomNumber = randomizeIt(1, 100);
+        alert(randomNumber); // CHEAT TO WIN!
+
+        var hasWon = false;
+
+        for (var i = 6; i > 0; i--) {
+            var triesText = "You have ";
+            if (i == 1) {
+                triesText += "1 try left";
+            } else {
+                triesText += i + " tries left";
+            }
+            var userNumber = parseInt(prompt("What's your guess? " + triesText)); 
+
+            if (userNumber == randomNumber) {
+                hasWon = true;
+                break;
+            } else if (userNumber > randomNumber) {
+                alert("DUDE! That number is so high!");
+            } else if (userNumber < randomNumber){
+                alert("Too low!");
+            } else {
+                alert("Invalid input!");
+            }
+
+        }
+
+        if (hasWon) {
+            alert("YOU WON!");
+        } else {
+            alert("YOU SUCK!");
+        }
+        
+    </script>
+
+</body>
+
+</html>
