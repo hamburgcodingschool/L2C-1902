@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+
+function randomizeIt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function createArray(size) {
+    var newArray = [];
+    for (var i = 0; i < size; i++) {
+        newArray[i] = randomizeIt(0, 9);
+    }
+    return newArray;
+}
+
+function createMatrix() {
+    var size = 4;
+
+    var newMatrix = [];
+    for (var i = 0; i < size; i++) {
+        newMatrix[i] = createArray(size);
+    }
+
+    return newMatrix;
+}
+
+function calcSumRows(matrix) {
+    var rowSums = [];
+    for (var i = 0; i < matrix.length; i++) {
+        rowSums[i] = 0;
+        for (var j = 0; j < matrix[i].length; j++) {
+            rowSums[i] += matrix[i][j];
+        }
+    }
+    return rowSums;
+}
+
+function calcSumCols(matrix) {
+    var colSums = [];
+    for (var i = 0; i < matrix.length; i++) {
+        colSums[i] = 0;
+        for (var j = 0; j < matrix[i].length; j++) {
+            colSums[i] += matrix[j][i];
+        }
+    }
+    return colSums;
+}
+
+function printMatrix(matrix, rowSums, colSums) {
+
+    var newHTML = '<table border="2" cellpadding="10" align="center">';
+
+    for (var i = 0; i < matrix.length; i++){
+        newHTML += '<tr>';
+        for (var j = 0; j < matrix[i].length; j++) {
+            newHTML += '<td>';
+            newHTML += matrix[i][j];
+            newHTML += '</td>';
+        }
+        newHTML += '<th>=</th>';
+        newHTML += '<td>' + rowSums[i] + '</td>';
+        newHTML += '</tr>';
+    }
+    
+    newHTML += '<tr>';
+    for (var i = 0; i < colSums.length; i++) {
+        newHTML += '<th>=</th>';
+    }
+    newHTML += '</tr>';
+
+    newHTML += '<tr>';
+    for (var i = 0; i < colSums.length; i++) {
+        newHTML += '<td>' + colSums[i] + '</td>';
+    }
+    newHTML += '</tr>';
+
+    newHTML += '</table>';
+
+    return newHTML;
+}
+
+var newMatrix = createMatrix();
+var rowSums = calcSumRows(newMatrix);
+var colSums = calcSumCols(newMatrix);
+
+var content = printMatrix(newMatrix, rowSums, colSums);
+
+document.write(content);
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #button-container {
+            width: 250px;
+        }
+
+        #button-container button {
+            width: 50px;
+            height: 50px;
+        }
+
+        #phrase-container {
+            font-size: 50px;
+        }
+    </style>
+</head>
+<body>
+    <!--
+        1 IMG tag to show the game state / or label to show number of lives
+        26 buttons from A -> Z
+        1 text with hidden characters (gets revealed while the game progresses)
+        status text (GAME OVER / YOU WON / ETC...)
+    -->
+
+    <img id="hangman-image" src="imgs/forca_6.png">
+    <div id="phrase-container"></div>
+    <div id="status-container"></div>
+    <div id="button-container">
+        
+    </div>
+    <script src="./hangman.js"></script>
+    <script>
+        // BOARD PREPARATION
+
+        const hangmanImage = document.getElementById("hangman-image");
+        const buttonContainer = document.getElementById("button-container");
+        const phraseContainer = document.getElementById("phrase-container");
+        const statusContainer = document.getElementById("status-container");        
+
+        const abc = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        let buttonText = "";
+        for (let i = 0; i < abc.length; i++) {
+            buttonText += "<button>";
+            buttonText += abc[i];
+            buttonText += "</button>";
+        }
+        
+        buttonContainer.innerHTML = buttonText;
+
+        const buttons = document.querySelectorAll('#button-container > button');
+        const clickHandler = function() {
+            userClickedOnLetter(this.innerText);
+        }
+        for (let i = 0; i < buttons.length; i++) {
+            let button = buttons[i];
+            button.addEventListener('click', clickHandler);
+        }
+
+        // GAME START
+
+        hangman.createSecretText();
+
+        
+        phraseContainer.innerText = hangman.secretText;
+        
+        function userClickedOnLetter(letter) {
+            
+            if (!hangman.isPlaying()) {
+                alert("DUDE THE GAME IS ALREADY OVER!");
+                return;
+            }
+
+            if (hangman.checkAndUpdateLetter(letter)) {
+                phraseContainer.innerText = hangman.secretText;
+            } else {
+                updateImage(hangman.lives);
+            }
+            
+            if (!hangman.isPlaying()) {
+                if (hangman.hasWon()) {
+                    statusContainer.innerText = "DUDE YOU ARE AWESOME! 🦇🌃";
+                } else {
+                    statusContainer.innerText = "YOU SUCK! GO HOME!";
+                }
+            }
+        }
+
+        function updateImage(lives) {
+            let newSrc = './imgs/forca_' + lives + '.png';
+            hangmanImage.src = newSrc;
+        }
+    </script>
+
+    
+</body>
+</html>
