@@ -33,3 +33,12 @@ const l2cCourse = [
     new Trainer("Helder", 38, "HH")
 ];
 
+
+for (person of l2cCourse) {
+    if (person instanceof Student) {
+        console.log(person.name + " is a Student");
+    }
+    if (person instanceof Trainer) {
+        console.log(person.name + " is a Trainer");
+    }
+}

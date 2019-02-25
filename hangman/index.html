@@ -34,6 +34,7 @@
     <div id="button-container">
         
     </div>
+    <button id="button-start">START GAME!</button>
     <script src="./hangman.js"></script>
     <script>
         // BOARD PREPARATION
@@ -42,6 +43,12 @@
         const buttonContainer = document.getElementById("button-container");
         const phraseContainer = document.getElementById("phrase-container");
         const statusContainer = document.getElementById("status-container");        
+        const buttonStart = document.getElementById("button-start");
+
+
+        buttonStart.addEventListener('click', function() {
+
+        });
 
         const abc = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         let buttonText = "";
